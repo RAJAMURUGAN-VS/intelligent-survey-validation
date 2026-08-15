@@ -1,0 +1,314 @@
+@import "tailwindcss";
+
+/* ============================================================
+   SENTINEL — GLOBAL CSS / DESIGN SYSTEM
+   ============================================================ */
+
+/* ---------- Custom Theme Tokens ---------- */
+@theme {
+  /* Colors */
+  --color-bg-base: #0B1220;
+  --color-bg-surface: #121A2B;
+  --color-surface: #141C2E;
+  --color-surface-elevated: #1A2540;
+  --color-teal: #2DD4BF;
+  --color-teal-dim: rgba(45, 212, 191, 0.15);
+  --color-teal-glow: rgba(45, 212, 191, 0.06);
+  --color-amber: #F5A524;
+  --color-danger: #F04438;
+  --color-violet: #8B7FE8;
+  --color-success: #2ED47A;
+  --color-text-primary: #E6EAF2;
+  --color-text-secondary: #8B95AB;
+
+  /* Fonts */
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Border radius */
+  --radius-card: 16px;
+
+  /* Shadows */
+  --shadow-card: 0 0 24px rgba(45, 212, 191, 0.06);
+  --shadow-card-hover: 0 0 40px rgba(45, 212, 191, 0.14);
+}
+
+/* ---------- Base Reset ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background: linear-gradient(135deg, #0B1220 0%, #121A2B 50%, #0D1628 100%);
+  background-attachment: fixed;
+  color: #E6EAF2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ---------- Topographic Background Texture ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M0 200 Q50 150 100 200 Q150 250 200 200 Q250 150 300 200 Q350 250 400 200' fill='none' stroke='%232DD4BF' stroke-width='1'/%3E%3Cpath d='M0 180 Q50 130 100 180 Q150 230 200 180 Q250 130 300 180 Q350 230 400 180' fill='none' stroke='%232DD4BF' stroke-width='0.8'/%3E%3Cpath d='M0 220 Q50 170 100 220 Q150 270 200 220 Q250 170 300 220 Q350 270 400 220' fill='none' stroke='%232DD4BF' stroke-width='0.8'/%3E%3Cpath d='M0 160 Q50 110 100 160 Q150 210 200 160 Q250 110 300 160 Q350 210 400 160' fill='none' stroke='%232DD4BF' stroke-width='0.6'/%3E%3Cpath d='M0 240 Q50 190 100 240 Q150 290 200 240 Q250 190 300 240 Q350 290 400 240' fill='none' stroke='%232DD4BF' stroke-width='0.6'/%3E%3Cpath d='M0 100 Q50 50 100 100 Q150 150 200 100 Q250 50 300 100 Q350 150 400 100' fill='none' stroke='%232DD4BF' stroke-width='0.5'/%3E%3Cpath d='M0 300 Q50 250 100 300 Q150 350 200 300 Q250 250 300 300 Q350 350 400 300' fill='none' stroke='%232DD4BF' stroke-width='0.5'/%3E%3Cpath d='M0 50 Q100 20 200 50 Q300 80 400 50' fill='none' stroke='%232DD4BF' stroke-width='0.4'/%3E%3Cpath d='M0 350 Q100 320 200 350 Q300 380 400 350' fill='none' stroke='%232DD4BF' stroke-width='0.4'/%3E%3Cpath d='M100 0 Q130 100 100 200 Q70 300 100 400' fill='none' stroke='%232DD4BF' stroke-width='0.5'/%3E%3Cpath d='M200 0 Q230 100 200 200 Q170 300 200 400' fill='none' stroke='%232DD4BF' stroke-width='0.5'/%3E%3Cpath d='M300 0 Q330 100 300 200 Q270 300 300 400' fill='none' stroke='%232DD4BF' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: 400px 400px;
+  pointer-events: none;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Glass Card ---------- */
+.glass-card {
+  background: rgba(20, 28, 46, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 212, 191, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 0 24px rgba(45, 212, 191, 0.06);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(45, 212, 191, 0.3);
+  box-shadow: 0 0 40px rgba(45, 212, 191, 0.12);
+}
+
+.glass-card-interactive:hover {
+  border-color: rgba(45, 212, 191, 0.35);
+  box-shadow: 0 0 40px rgba(45, 212, 191, 0.14);
+  transform: translateY(-2px);
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(18, 26, 43, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(45, 212, 191, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 212, 191, 0.5);
+}
+
+/* ---------- Typography Helpers ---------- */
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-sans { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+/* ---------- Gradient Text ---------- */
+.gradient-text {
+  background: linear-gradient(135deg, #2DD4BF, #8B7FE8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------- Teal glow pulse animation ---------- */
+@keyframes teal-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(45, 212, 191, 0); }
+}
+
+@keyframes teal-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes amber-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 165, 36, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(245, 165, 36, 0); }
+}
+
+@keyframes danger-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(240, 68, 56, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(240, 68, 56, 0); }
+}
+
+@keyframes success-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46, 212, 122, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(46, 212, 122, 0); }
+}
+
+@keyframes dash-flow {
+  to { stroke-dashoffset: -40; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes count-ring {
+  0% { stroke-dashoffset: 251; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ---------- Utility Classes ---------- */
+.animate-pulse-teal { animation: teal-pulse 2s ease infinite; }
+.animate-pulse-amber { animation: amber-pulse 2s ease infinite; }
+.animate-pulse-danger { animation: danger-pulse 2s ease infinite; }
+.animate-pulse-success { animation: success-pulse 2s ease infinite; }
+.animate-dash-flow { animation: dash-flow 1.5s linear infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(45,212,191,0.05) 25%, rgba(45,212,191,0.15) 50%, rgba(45,212,191,0.05) 75%);
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
+}
+.animate-fade-in-up { animation: fade-in-up 0.4s ease forwards; }
+.animate-spin-slow { animation: spin-slow 3s linear infinite; }
+
+/* ---------- Sidebar & Layout ---------- */
+.sidebar-transition {
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Terminal / Log Panel ---------- */
+.terminal-panel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  background: rgba(8, 12, 22, 0.95);
+  border: 1px solid rgba(45, 212, 191, 0.1);
+  border-radius: 8px;
+  color: #2DD4BF;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+/* ---------- Range Slider Styling ---------- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(45, 212, 191, 0.15);
+  border-radius: 4px;
+  height: 4px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2DD4BF;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.5);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2DD4BF;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.5);
+}
+
+/* ---------- Focus States ---------- */
+:focus-visible {
+  outline: 2px solid rgba(45, 212, 191, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Recharts Overrides ---------- */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(45, 212, 191, 0.08) !important;
+}
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: rgba(20, 28, 46, 0.95) !important;
+  border: 1px solid rgba(45, 212, 191, 0.2) !important;
+  border-radius: 8px !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* ---------- Status Dot Animations ---------- */
+.pulse-dot-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: teal-ring 1.8s ease-out infinite;
+}
+
+/* ---------- Input Styling ---------- */
+input[type="text"], input[type="password"], select, textarea {
+  background: rgba(20, 28, 46, 0.8);
+  border: 1px solid rgba(45, 212, 191, 0.15);
+  border-radius: 8px;
+  color: #E6EAF2;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: rgba(45, 212, 191, 0.4);
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.08);
+}
+input::placeholder { color: #8B95AB; }
+
+/* ---------- Button Base ---------- */
+.btn-primary {
+  background: linear-gradient(135deg, #2DD4BF, #1aaa98);
+  color: #0B1220;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 24px rgba(45, 212, 191, 0.4);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  background: transparent;
+  color: #8B95AB;
+  border: 1px solid rgba(45, 212, 191, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.btn-ghost:hover {
+  border-color: rgba(45, 212, 191, 0.4);
+  color: #E6EAF2;
+  background: rgba(45, 212, 191, 0.05);
+}
+
+/* ---------- Badge ---------- */
+.badge-teal { background: rgba(45, 212, 191, 0.15); color: #2DD4BF; border: 1px solid rgba(45, 212, 191, 0.3); }
+.badge-amber { background: rgba(245, 165, 36, 0.15); color: #F5A524; border: 1px solid rgba(245, 165, 36, 0.3); }
+.badge-danger { background: rgba(240, 68, 56, 0.15); color: #F04438; border: 1px solid rgba(240, 68, 56, 0.3); }
+.badge-violet { background: rgba(139, 127, 232, 0.15); color: #8B7FE8; border: 1px solid rgba(139, 127, 232, 0.3); }
+.badge-success { background: rgba(46, 212, 122, 0.15); color: #2ED47A; border: 1px solid rgba(46, 212, 122, 0.3); }
